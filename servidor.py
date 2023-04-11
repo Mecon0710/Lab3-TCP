@@ -46,7 +46,7 @@ def producer():
                     global path_log 
                     path_log=os.path.join(absolute_path, "logs")
                     path_log=os.path.join(path_log, name_filelog)
-                    print(path_log,"path_log")
+                    print(name_filelog)
                     with open(path_log, "a") as f: 
                         f.write(f"El Tamaño del archivo es:{texto_log*1e-6} MB\n")
                     global barrier 
@@ -65,7 +65,7 @@ def producer():
                 except Exception:
                     size_data_error=os.path.getsize(path)
                     with open(path_log, "a") as f: 
-                            f.write("SERVER-CLIENT CONECTION ERROR: The file managed to send " + str(size_data_error*1e-6)+ " MB para el cliente "+str(threading.get_ident())+"\n")                
+                            f.write("SERVER-CLIENT CONECTION ERROR: The file managed to send " + str(size_data_error*1e-6)+ " MB for one of the clients\n")                
             elif cmd == "LIST":
 
                 files = os.listdir(SERVER_DATA_PATH)
@@ -137,7 +137,7 @@ def handle_client(conn, addr):
                     except Exception:
                         size_data_error=os.path.getsize(path)
                         with open(path_log, "a") as f: 
-                            f.write("SERVER-CLIENT CONECTION ERROR: The file managed to send " + str(size_data_error*1e-6)+ " MB para el cliente "+str(threading.get_ident())+"\n")
+                            f.write("SERVER-CLIENT CONECTION ERROR: The file managed to send " + str(size_data_error*1e-6)+ " MB for one of the clients\n")
                             
         elif cmd == "LOGOUT":
             break
